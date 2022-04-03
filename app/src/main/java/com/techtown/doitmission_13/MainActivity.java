@@ -38,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
                 int getCusCnt = recyclerView.getAdapter().getItemCount();
                 cusCnt.setText(String.valueOf(getCusCnt) + '명');
+
+                name.getText().clear();
+                birthDate.getText().clear();
+                phoneNum.getText().clear();
             }
         });
 
