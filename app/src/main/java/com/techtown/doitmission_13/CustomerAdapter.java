@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,7 +50,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         items.set(position, item);
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
         TextView textView2;
         TextView textView3;
@@ -60,6 +61,18 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
             textView = itemView.findViewById(R.id.textView);
             textView2 = itemView.findViewById(R.id.textView2);
             textView3 = itemView.findViewById(R.id.textView3);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        Toast.makeText(view.getContext(), items.get(pos).getName() + items.get(pos).getBirthDate() + "\n" + items.get(pos).getPhoneNum(), Toast.LENGTH_SHORT).show();
+
+                        notifyItemChanged(pos);
+                    }
+                }
+            });
         }
 
         public void setItem(Customer item) {
