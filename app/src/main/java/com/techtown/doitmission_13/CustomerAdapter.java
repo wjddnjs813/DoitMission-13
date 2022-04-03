@@ -1,5 +1,6 @@
 package com.techtown.doitmission_13;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +68,14 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION) {
+                        Intent intent = new Intent(view.getContext(), CustomerDetail.class);
+
+                        intent.putExtra("name", items.get(pos).getName());
+                        intent.putExtra("birthDate", items.get(pos).getBirthDate());
+                        intent.putExtra("phoneNum", items.get(pos).getPhoneNum());
+
+                        view.getContext().startActivity(intent);
+
                         Toast.makeText(view.getContext(), items.get(pos).getName() + items.get(pos).getBirthDate() + "\n" + items.get(pos).getPhoneNum(), Toast.LENGTH_SHORT).show();
 
                         notifyItemChanged(pos);
